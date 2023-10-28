@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lecture Notes</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      display: flex;
+      height: 100vh;
+      background-color: #f7f7f7;
+    }
+    .sidebar {
+      width: 25%;
+      background-color: #fff;
+      padding: 20px;
+      box-shadow: 2px 0px 5px rgba(0, 0, 0, 0.1);
+      overflow-y: auto;
+    }
+    .notes {
+      width: 75%;
+      background-color: #fff;
+      padding: 20px;
+      box-shadow: -2px 0px 5px rgba(0, 0, 0, 0.1);
+      overflow-y: auto;
+    }
+    .lecture {
+      cursor: pointer;
+      padding: 10px;
+      border-bottom: 1px solid #eee;
+    }
+    .lecture:hover {
+      background-color: #f7f7f7;
+    }
+  </style>
+  <script>
+    function displayNotes(lectureName) {
+      // In a real implementation, you'd fetch notes based on the lectureName.
+      // For this example, we'll just change the content.
+      document.querySelector('.notes-content').innerHTML = `Notes for ${lectureName}`;
+    }
+  </script>
+</head>
+<body>
+<div class="sidebar">
+  <h2>Lectures</h2>
+  <div class="lecture" onclick="displayNotes('Lecture 1')">Lecture 1</div>
+  <div class="lecture" onclick="displayNotes('Lecture 2')">Lecture 2</div>
+  <!-- Add more lectures as needed -->
+</div>
+<div class="notes">
+  <h2>Notes</h2>
+  <div class="notes-content">Select a lecture to view its notes.</div>
+</div>
+</body>
+</html>
