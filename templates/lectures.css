@@ -1,0 +1,28 @@
+body {
+  font-family: Arial, sans-serif;
+  display: flex;
+  height: 100vh;
+  background-color: #f7f7f7;
+}
+.sidebar {
+  width: 25%;
+  background-color: #fff;
+  padding: 20px;
+  box-shadow: 2px 0px 5px rgba(0, 0, 0, 0.1);
+  overflow-y: auto;
+}
+.notes {
+  width: 75%;
+  background-color: #fff;
+  padding: 20px;
+  box-shadow: -2px 0px 5px rgba(0, 0, 0, 0.1);
+  overflow-y: auto;
+}
+.lecture {
+  cursor: pointer;
+  padding: 10px;
+  border-bottom: 1px solid #eee;
+}
+.lecture:hover {
+  background-color: #f7f7f7;
+}
