@@ -15,31 +15,6 @@ function dropHandler(event) {
   showFileName();
 }
 
-function uploadFile() {
-  const fileInput = document.getElementById('fileInput');
-  if (fileInput.files.length === 0) {
-    alert('Please select a file first!');
-    return;
-  }
-
-  const formData = new FormData();
-  formData.append('file', fileInput.files[0]);
-
-  fetch('/server_endpoint', {  // replace '/server_endpoint' with server's endpoint
-    method: 'POST',
-    body: formData
-  })
-    .then(response => response.json())
-    .then(data => {
-      alert('File uploaded successfully!');
-      // you can handle server's response here if needed
-    })
-    .catch(error => {
-      alert('Error uploading file: ' + error.message);
-    });
-}
-
-
 function showFileName() {
   const fileInput = document.getElementById('fileInput');
   const fileNameDisplay = document.getElementById('selectedFileName');

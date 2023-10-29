@@ -4,7 +4,7 @@
 <head>
   <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500&display=swap" rel="stylesheet">
 
-  <link rel="stylesheet" href="home.css">
+  <link rel="stylesheet" href="static/home.css" type="text/css">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Lectures to Notes</title>
@@ -13,23 +13,25 @@
 
 <body>
 
-<div class="file-upload-wrapper" ondrop="dropHandler(event);" ondragover="dragOverHandler(event);" ondragleave="dragLeaveHandler(event);">
-  <form action="{{ url_for('generate')}}" method="post" enctype="multipart/form-data">
-  <input required type="file" id="fileInput" name="audio" accept="audio/*" style="display: none;" onchange="showFileName()">
-  <h2 class="site-heading">LectureToNotes.ai</h2>
-  <button onclick="document.getElementById('fileInput').click();">Select Files</button>
-  <span id="drop-text">or drop file here</span>
-  <span id="selectedFileName"></span>
-  <input id="uploadBtn" type="submit" disabled>magically create notes!</input>
-  </form>
-</div>
+  <div class="file-upload-wrapper" ondrop="dropHandler(event);" ondragover="dragOverHandler(event);"
+    ondragleave="dragLeaveHandler(event);">
+    <form action="{{ url_for('generate')}}" method="post" enctype="multipart/form-data">
+      <input required type="file" id="fileInput" name="audio" accept="audio/*" style="display: none;"
+        onchange="showFileName()">
+      <h2 class="site-heading">LectureToNotes.ai</h2>
+      <button onclick="document.getElementById('fileInput').click();">Select Files</button>
+      <span id="drop-text">or drop file here</span>
+      <span id="selectedFileName"></span>
+      <input id="uploadBtn" type="submit" value="make notes " />
+    </form>
+  </div>
 
 
 
 
-<script>
-  function showFileName() {
-    const fileInput = document.getElementById('fileInput');
+  <script>
+    function showFileName() {
+      const fileInput = document.getElementById('fileInput');
       const fileNameDisplay = document.getElementById('selectedFileName');
       const uploadBtn = document.getElementById('uploadBtn');
       if (fileInput.files.length > 0) {
@@ -39,10 +41,11 @@
         fileNameDisplay.textContent = '';
         uploadBtn.style.display = 'none';  // hide the "Upload" button
       }
-  }
-</script>
+    }
+  </script>
 
-<script src="main.js"></script>
+  <script src="static/main.js"></script>
 
 </body>
+
 </html>
