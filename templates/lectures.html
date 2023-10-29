@@ -1,28 +1,78 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <link rel="stylesheet" href="lectures.css">
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Lecture Notes</title>
+{% extends "layout.html" %} {% block header %}
+<link rel="stylesheet" href="./static/lectures.css" />
+<link rel="stylesheet" href="./static/summary.css" />
 
-  <script>
-    function displayNotes(lectureName) {
-      // fetch notes based on the lectureName.
-      document.querySelector('.notes-content').innerHTML = `Notes for ${lectureName}`;
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+/>
+
+{% endblock %} {% block body %}
+<a href="{{url_for('home')}}" class="lectures-btn">
+  <img
+    src="https://thenounproject.com/api/private/icons/3998614/edit/?backgroundShape=SQUARE&backgroundShapeColor=%23000000&backgroundShapeOpacity=0&exportSize=752&flipX=false&flipY=false&foregroundColor=%23000000&foregroundOpacity=1&imageFormat=png&rotation=0"
+    alt="Lectures Icon"
+    id="logo"
+  />
+</a>
+<script>
+  function displayNotes(note) {
+    // fetch notes based on the lectureName.
+    document.querySelector(".notes-content").innerHTML = "";
+    const listContainer = document.createElement("ul");
+    for (let item of note) {
+      const newListItem = document.createElement("li");
+      newListItem.textContent = item;
+      listContainer.appendChild(newListItem);
     }
-  </script>
-</head>
-<body>
+    document.querySelector(".notes-content").appendChild(listContainer);
+  }
+
+  function deleteItem(note_id) {
+    console.log("Button clicked");
+    console.log(note_id);
+    const url = "http://localhost:3000/delete_note";
+
+    const postData = {
+      note_id: note_id,
+    };
+
+    fetch(url, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(postData),
+    }).then((response) => {
+      if (response.ok) {
+        location.reload();
+      }
+      throw new Error("Network response was not ok.");
+    });
+  }
+</script>
+
 <div class="sidebar">
   <h2>Lectures</h2>
-  <div class="lecture" onclick="displayNotes('Lecture 1')">Lecture 1</div>
-  <div class="lecture" onclick="displayNotes('Lecture 2')">Lecture 2</div>
+  {% if notes %} {% for note in notes %}
+  <div class="lecture" onclick="displayNotes({{ note[0]['note']}})">
+    Lecture {{loop.index}}
+  </div>
+  <button type="button" onclick="deleteItem('{{note[1]}}')">
+    <i class="fas fa-trash-alt"></i> Delete
+  </button>
+  <br /><br />
+
+  {% endfor %} {% endif %}
+  <!-- <div class="lecture" onclick="displayNotes('Lecture 2')">Lecture 2</div> -->
   <!-- Add more lectures as needed -->
 </div>
 <div class="notes">
-  <h2>Notes</h2>
-  <div class="notes-content">Select a lecture to view its notes.</div>
+  <div class="summary-container">
+    <h2>Notes</h2>
+
+    <div class="notes-content">Select a lecture to view its notes.</div>
+  </div>
+  <br />
 </div>
-</body>
-</html>
+{% endblock %}

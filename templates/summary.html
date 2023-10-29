@@ -1,19 +1,43 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends "layout.html" %} {% block header %}
+<link rel="stylesheet" href="static/summary.css" />
 
-<head>
-  <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500&display=swap" rel="stylesheet">
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Summary</title>
-  <link rel="stylesheet" href="static/summary.css">
-</head>
+{% endblock %} {% block body %}
+<script>
+  function saveNotes() {
+    console.log("Button clicked");
+    const url = "http://localhost:3000/add_note";
 
-<body>
-  <div class="summary-container">
-    <p>{{ summary }}</p>
-    <button class="save-btn">Save Notes</button>
-  </div>
-</body>
+    const postData = {
+      user_id: "{{session.userinfo.sub}}",
+      note: {{ summary|safe}},
+    };
 
-</html>
+    fetch(url, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(postData),
+    }).then((response) => {
+      if (response.ok) {
+        window.location.href = "http://localhost:3000/notes";
+      }
+      throw new Error("Network response was not ok.");
+    });
+  }
+</script>
+<div class="summary-container">
+  <ul>
+    {% for bp in summary %}
+    <li>{{ bp }}</li>
+    {% endfor %}
+  </ul>
+  {% if session %}
+
+  <button class="save-btn" onclick="saveNotes()">Save Notes</button>
+
+  {% else %}
+  <span>Login to save results</span>
+  {% endif %}
+</div>
+{% endblock %}

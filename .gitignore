@@ -4,6 +4,7 @@
 .DS_Store
 test.txt
 google-api-key.json
+credentials.json
 blob
 blob.mp3
 .env*

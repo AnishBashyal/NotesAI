@@ -9,7 +9,7 @@ body {
 }
 
 .site-heading {
-  font-family: 'Rubik', sans-serif;
+  font-family: "Rubik", sans-serif;
   font-size: 34px;
   color: #333;
   margin-bottom: 20px;
@@ -30,9 +30,8 @@ body {
   transition: border-color 0.3s;
 }
 
-
 .file-upload-wrapper button {
-  background-color: #4CAF50;
+  background-color: #4caf50;
   color: white;
   padding: 15px 30px;
   border: none;
@@ -63,17 +62,17 @@ body {
 }
 
 .file-upload-wrapper.drag-over {
-  border-color: #4CAF50;
+  border-color: #4caf50;
   background-color: rgba(76, 175, 80, 0.1);
 }
 
 .file-upload-wrapper.drag-over #drop-text {
-  color: #4CAF50;
+  color: #4caf50;
 }
 
 #uploadBtn {
   margin-top: 20px;
-  background-color: #4CAF50;
+  background-color: #4caf50;
   color: white;
   padding: 10px 20px;
   border: none;
@@ -87,50 +86,3 @@ body {
 #uploadBtn:hover {
   background-color: #45a049;
 }
-
-
-.lectures-btn {
-  position: absolute;
-  top: 10px;
-  left: 10px;
-  background-color: white;
-  border: none;
-  border-radius: 5px;
-  padding: 8px;
-  text-decoration: none;
-  transition: box-shadow 0.3s;
-}
-
-.lectures-btn:hover {
-  box-shadow: 0px 0px 10px rgba(0,0,0,0.2);
-}
-
-.lectures-btn img {
-  width: 24px;
-  height: 24px;
-}
-
-#signInBtn {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  background-color: #4CAF50;
-  color: white;
-  padding: 8px 16px;
-  border: none;
-  border-radius: 5px;
-  font-size: 16px;
-  cursor: pointer;
-  transition: background-color 0.3s;
-}
-
-#signInBtn:hover {
-  background-color: #45a049;
-}
-
-
-
-
-
-
-

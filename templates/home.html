@@ -1,50 +1,59 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500&display=swap" rel="stylesheet">
+{% extends "layout.html" %} {% block header %}
+<link rel="stylesheet" href="static/home.css" />
 
-  <link rel="stylesheet" href="home.css">
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Lectures to Notes</title>
-
-</head>
-<body>
-<a href="lectures.html" class="lectures-btn">
-
-  <img src="https://thenounproject.com/api/private/icons/3998614/edit/?backgroundShape=SQUARE&backgroundShapeColor=%23000000&backgroundShapeOpacity=0&exportSize=752&flipX=false&flipY=false&foregroundColor=%23000000&foregroundOpacity=1&imageFormat=png&rotation=0" alt="Lectures Icon">
+{% endblock %} {% block body %} {% if session %}
+<a href="{{url_for('get_notes')}}" class="lectures-btn">
+  <!-- <img
+    src="https://thenounproject.com/api/private/icons/3998614/edit/?backgroundShape=SQUARE&backgroundShapeColor=%23000000&backgroundShapeOpacity=0&exportSize=752&flipX=false&flipY=false&foregroundColor=%23000000&foregroundOpacity=1&imageFormat=png&rotation=0"
+    alt="Lectures Icon"
+  /> -->
+  <img src="static/logo1.png" id="logo" />
 </a>
-
-
-
-<div class="file-upload-wrapper" ondrop="dropHandler(event);" ondragover="dragOverHandler(event);" ondragleave="dragLeaveHandler(event);">
-  <input type="file" id="fileInput" accept="audio/*" style="display: none;" onchange="showFileName()">
-  <h2 class="site-heading">LectureToNotes.ai</h2>
-  <button onclick="document.getElementById('fileInput').click();">Select Files</button>
-  <span id="drop-text">or drop file here</span>
-  <span id="selectedFileName"></span>
-  <button id="uploadBtn" onclick="uploadFile()" disabled>magically create notes!</button>
+{% endif %}
+<div
+  class="file-upload-wrapper"
+  ondrop="dropHandler(event);"
+  ondragover="dragOverHandler(event);"
+  ondragleave="dragLeaveHandler(event);"
+>
+  <form
+    action="{{ url_for('generate')}}"
+    method="post"
+    enctype="multipart/form-data"
+  >
+    <input
+      required
+      type="file"
+      id="fileInput"
+      name="audio"
+      accept="audio/*, video/*"
+      style="display: none"
+      onchange="showFileName()"
+    />
+    <h2 class="site-heading">LectureToNotes.ai</h2>
+    <button onclick="document.getElementById('fileInput').click();">
+      Upload Lecture
+    </button>
+    <!-- <span id="drop-text">or drop file here</span> -->
+    <span id="selectedFileName"></span>
+    <input id="uploadBtn" type="submit" value="Generate" />
+  </form>
 </div>
-
-
-
 
 <script>
   function showFileName() {
-    const fileInput = document.getElementById('fileInput');
-    const fileNameDisplay = document.getElementById('selectedFileName');
+    const fileInput = document.getElementById("fileInput");
+    const fileNameDisplay = document.getElementById("selectedFileName");
+    const uploadBtn = document.getElementById("uploadBtn");
     if (fileInput.files.length > 0) {
-      fileNameDisplay.textContent = ' ' + fileInput.files[0].name;
+      fileNameDisplay.textContent = " " + fileInput.files[0].name;
+      uploadBtn.style.display = "block"; // show the "Upload" button
     } else {
-      fileNameDisplay.textContent = '';
+      fileNameDisplay.textContent = "";
+      uploadBtn.style.display = "none"; // hide the "Upload" button
     }
   }
 </script>
 
-
-
-<script src="main.js"></script>
-<button id="signInBtn" onclick="login()">Sign In</button>
-
-</body>
-</html>
+<script src="static/main.js"></script>
+{% endblock %}
