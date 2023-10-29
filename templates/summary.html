@@ -5,25 +5,26 @@
 <script>
   function saveNotes() {
     console.log("Button clicked");
-    const url = "http://localhost:3000/add_note";
+    const url = "/add_note";
 
     const postData = {
       user_id: "{{session.userinfo.sub}}",
-      note: {{ summary|safe}},
+      note: {{ summary| safe
+  }},
     };
 
-    fetch(url, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(postData),
-    }).then((response) => {
-      if (response.ok) {
-        window.location.href = "http://localhost:3000/notes";
-      }
-      throw new Error("Network response was not ok.");
-    });
+  fetch(window.location.origin + url, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(postData),
+  }).then((response) => {
+    if (response.ok) {
+      window.location.pathname = "/notes";
+    }
+    throw new Error("Network response was not ok.");
+  });
   }
 </script>
 {% endif %}

@@ -27,3 +27,7 @@ function showFileName() {
     uploadBtn.style.display = 'none';  // hide the "Upload" button
   }
 }
+
+function showLoading() {
+  document.getElementById('loadingOverlay').style.display = 'flex';
+}

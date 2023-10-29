@@ -10,34 +10,22 @@
   <img src="static/logo1.png" id="logo" />
 </a>
 {% endif %}
-<div
-  class="file-upload-wrapper"
-  ondrop="dropHandler(event);"
-  ondragover="dragOverHandler(event);"
-  ondragleave="dragLeaveHandler(event);"
->
-  <form
-    action="{{ url_for('generate')}}"
-    method="post"
-    enctype="multipart/form-data"
-  >
-    <input
-      required
-      type="file"
-      id="fileInput"
-      name="audio"
-      accept="audio/*, video/*"
-      style="display: none"
-      onchange="showFileName()"
-    />
+<div class="file-upload-wrapper" ondrop="dropHandler(event);" ondragover="dragOverHandler(event);"
+  ondragleave="dragLeaveHandler(event);">
+  <form action="{{ url_for('generate')}}" method="post" enctype="multipart/form-data">
+    <input required type="file" id="fileInput" name="audio" accept="audio/*, video/*" style="display: none"
+      onchange="showFileName()" />
     <h2 class="site-heading">LectureToNotes.ai</h2>
     <button onclick="document.getElementById('fileInput').click();">
       Upload Lecture
     </button>
     <!-- <span id="drop-text">or drop file here</span> -->
     <span id="selectedFileName"></span>
-    <input id="uploadBtn" type="submit" value="Generate" />
+    <input id="uploadBtn" type="submit" value="Generate" onclick="showLoading()" />
   </form>
+</div>
+<div id="loadingOverlay" class="loading-overlay">
+  <div class="loader"></div>
 </div>
 
 <script>
