@@ -12,6 +12,7 @@ from os import environ as env
 from authlib.integrations.flask_client import OAuth
 from urllib.parse import quote_plus, urlencode
 import requests
+
 # import html, re
 
 load_dotenv()
@@ -63,9 +64,10 @@ chain = LLMChain(llm=llm, prompt=prompt_template)
 #     ]
 #     return render_template('test.html', strings_array=strings_array)
 
+
 @app.route("/")
 def home():
-    return render_template("home.html",title="NotesAI",session=session.get("user"))
+    return render_template("home.html", title="NotesAI", session=session.get("user"))
 
 
 @app.route("/summary", methods=["POST"])
@@ -80,25 +82,47 @@ def generate():
         summary = make_summary(text)
         # print("SUMMARY", summary)
         summary = summary.split("- ")[1:]
-        return render_template("summary.html", summary=summary, title = "Summary", session=session.get("user"))
+        return render_template(
+            "summary.html",
+            summary=summary,
+            title="Summary",
+            session=session.get("user"),
+        )
+
 
 @app.route("/notes", methods=["GET"])
 def get_notes():
     if not session:
         return redirect(url_for("home"))
-    user_id = session.get("user")['userinfo']['sub']
+    user_id = session.get("user")["userinfo"]["sub"]
     base_url = "http://localhost:3000/"
-    api_url = url_for('main.user_notes', user_id = user_id) 
+    api_url = url_for("main.user_notes", user_id=user_id)
     response = requests.get(base_url + api_url)
-    
+
     api_data = response.json() if response else None
     # print(api_data)
-    return render_template("lectures.html", title="Notes", session=session.get("user"), notes=api_data)
+    return render_template(
+        "lectures.html", title="Notes", session=session.get("user"), notes=api_data
+    )
+
 
 def upload_audio(file):
-    blob.upload_from_file(file)
-    speech_config.sample_rate_hertz = MP3(file).info.sample_rate
-
+    file.save(TEMP_FILE_NAME)
+    info = MediaInfo.parse(TEMP_FILE_NAME)
+    isVideo = False
+    for track in info.tracks:
+        if track.track_type == "Video":
+            isVideo = True
+            break
+    if isVideo:
+        video = editor.VideoFileClip(TEMP_FILE_NAME)
+        audio = video.audio
+    else:
+        audio = editor.AudioFileClip(TEMP_FILE_NAME)
+    mp3_name = f"{TEMP_FILE_NAME}.mp3"
+    audio.write_audiofile(mp3_name)
+    speech_config.sample_rate_hertz = MP3(mp3_name).info.sample_rate
+    blob.upload_from_filename(mp3_name)
 
 
 def transcribe_audio():
@@ -118,6 +142,7 @@ def make_summary(transcript):
     response = chain.run(transcript)
     print(response)
     return response
+
 
 oauth = OAuth(app)
 
@@ -162,5 +187,6 @@ def logout():
         )
     )
 
+
 if __name__ == "__main__":
-    app.run(debug = True, host="0.0.0.0", port=env.get("PORT", 3000))
+    app.run(debug=True, host="0.0.0.0", port=env.get("PORT", 3000))
