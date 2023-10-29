@@ -81,7 +81,7 @@ def make_summary(transcript):
 
     prompt_template = PromptTemplate(
         input_variables=["lecture"],
-        template="Make informative, concise, and accurate notes of the following lecture. Include topics, descriptions and bullet points. The lecture : {lecture}",
+        template="Make informative, concise, and accurate notes of the following lecture. Include topics, descriptions, bullet points and full descriptions of each bullet point. The lecture : {lecture}",
     )
 
     chain = LLMChain(llm=llm, prompt=prompt_template)
