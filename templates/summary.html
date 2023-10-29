@@ -1,7 +1,7 @@
 {% extends "layout.html" %} {% block header %}
 <link rel="stylesheet" href="static/summary.css" />
 
-{% endblock %} {% block body %}
+{% endblock %} {% block body %} {% if session %}
 <script>
   function saveNotes() {
     console.log("Button clicked");
@@ -26,6 +26,7 @@
     });
   }
 </script>
+{% endif %}
 <div class="summary-container">
   <ul>
     {% for bp in summary %}
