@@ -6,13 +6,13 @@ body {
 }
 
 .summary-container {
-  width: 80%;  
+  width: 80%;  /* Use a percentage width to make the container responsive */
   max-width: 800px;
-  margin: 20px auto;  
+  margin: 20px auto;  /* Added margin to give some spacing from the top */
   padding: 20px;
   background-color: #fff;
   box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
-  text-align: center; 
+  text-align: center;  /* Center the text */
 }
 
 h1, h2 {
@@ -26,9 +26,26 @@ p {
 
 ul {
   margin-left: 20px;
-  text-align: left;  
+  text-align: left;  /* Since the main text is centered, specify left alignment for the list for better readability */
 }
 
 li {
   margin-bottom: 10px;
+}
+
+.save-btn {
+  margin-top: 20px;
+  padding: 10px 20px;
+  font-family: 'Rubik', sans-serif;
+  font-size: 16px;
+  background-color: #4CAF50;  /* Green background */
+  color: #fff;                /* White text */
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;  /* Smooth color transition on hover */
+}
+
+.save-btn:hover {
+  background-color: #45a049;  /* Slightly darker green on hover */
 }
