@@ -4,3 +4,7 @@
 .DS_Store
 test.txt
 google-api-key.json
+blob
+blob.mp3
+.env*
+.vscode

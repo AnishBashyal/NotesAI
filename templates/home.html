@@ -16,7 +16,7 @@
   <div class="file-upload-wrapper" ondrop="dropHandler(event);" ondragover="dragOverHandler(event);"
     ondragleave="dragLeaveHandler(event);">
     <form action="{{ url_for('generate')}}" method="post" enctype="multipart/form-data">
-      <input required type="file" id="fileInput" name="audio" accept="audio/*" style="display: none;"
+      <input required type="file" id="fileInput" name="audio" accept="audio/*, video/*" style="display: none;"
         onchange="showFileName()">
       <h2 class="site-heading">LectureToNotes.ai</h2>
       <button onclick="document.getElementById('fileInput').click();">Select Files</button>
