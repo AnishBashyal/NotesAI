@@ -1,4 +1,4 @@
-# LectureToNotes.ai
+## LectureToNotes.ai
 
 **Inspiration**
 
@@ -40,3 +40,9 @@ We made Flask the backbone of our project, and integrated it with many different
 - Allow users to share and combine notes with each other 
 - Multilingual support
 - Allow users to customize the prompts, and personalize style of notes to their preference
+
+
+<img width="1710" alt="img4" src="https://github.com/AnishBashyal/NotesAI/assets/53051451/7bbe0f37-b7b8-4a9d-820a-91fc0228f7dd">
+<img width="1710" alt="img3" src="https://github.com/AnishBashyal/NotesAI/assets/53051451/2776365d-eea3-4b4a-a639-79b6a7f3a2b2">
+<img width="1710" alt="img2" src="https://github.com/AnishBashyal/NotesAI/assets/53051451/51576a19-d743-4861-a507-00cab4ef86bb">
+
