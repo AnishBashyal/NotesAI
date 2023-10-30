@@ -20,10 +20,8 @@ We made Flask the backbone of our project, and integrated it with many different
 
 **Challenges we ran into**
 
-- Difficulty in reading data after conversion to text
-- ChatGPT’s slow response time
+- Multiple layers of conversions. Video -> Audio -> Transcript -> Summary -> Bullets.
 - API restrictions (i.e: OpenAI’s 3 requests per min quota)
-- Converting OpenAI’s response to bullet point form
 
 **Accomplishments that we're proud of**
 
@@ -39,6 +37,6 @@ We made Flask the backbone of our project, and integrated it with many different
 
 **What's next for LectureToNotes.ai**
 
-- Allow users to share and combine notes with each other directly from website
+- Allow users to share and combine notes with each other 
 - Multilingual support
-- Real-world testing and integrating feedback from community
+- Allow users to customize the prompts, and personalize style of notes to their preference
